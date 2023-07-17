@@ -117,7 +117,9 @@
 				</li>
 			{/each}
 		</ul>
-		<!-- the `nonpassive` is needed for some events on some browsers, so we'll include it everywhere -->
+		<!-- the `nonpassive` changes behavior for some events on some browsers,
+			so we'll include it everywhere, but we probably want to add a toggle
+			to revert some or all of them to the default -->
 		<div
 			class="pointing_events"
 			role="none"
