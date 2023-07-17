@@ -2,6 +2,7 @@
 	// TODO BLOCK capture (toggle?)
 
 	interface LogItem {
+		type: 'mouse' | 'touch' | 'pointer';
 		name: string;
 		time: number;
 	}
@@ -10,7 +11,7 @@
 
 	const log = (name: string) => {
 		items = items.slice();
-		items.unshift({name, time: performance.now()});
+		items.unshift({type: 'mouse', name, time: performance.now()});
 	};
 
 	// TODO BLOCK add mousemove, but only between a mousedown and mouseup to avoid worthless spam
@@ -31,7 +32,11 @@
 			{#each items as item, i (item)}
 				{@const time = item.time - start_time}
 				{@const dt = i === item_count - 1 ? time : time - (items[i + 1].time - start_time)}
-				<li>
+				<li
+					class:mouse={item.type === 'mouse'}
+					class:touch={item.type === 'touch'}
+					class:pointer={item.type === 'pointer'}
+				>
 					<div class="name">{item.name}</div>
 					<div class="dt">{Math.round(dt)}<small>ms</small></div>
 					<div class="time">{Math.round(time)}<small>ms</small></div>
@@ -85,6 +90,15 @@
 	li {
 		display: flex;
 		align-items: center;
+	}
+	li.mouse {
+		color: var(--color_1);
+	}
+	li.touch {
+		color: var(--color_2);
+	}
+	li.pointer {
+		color: var(--color_3);
 	}
 	.name {
 		width: 120px;
