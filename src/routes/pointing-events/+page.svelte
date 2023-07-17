@@ -225,6 +225,5 @@
 	}
 	.dt {
 		width: 70px;
-		text-align: right;
 	}
 </style>
