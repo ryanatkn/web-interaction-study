@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-	<title>felt-template</title>
+	<title>web interaction study</title>
 </svelte:head>
 
 <svelte:body

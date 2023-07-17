@@ -1,25 +1,30 @@
 <script lang="ts">
-	import Message from '@feltjs/felt-ui/Message.svelte';
+	import {base} from '$app/paths';
 
-	import Mreows from '$routes/Mreows.svelte';
-
-	let mreows: Array<{icon: string}> | undefined;
+	//
 </script>
 
-<main class="prose">
-	<section>
-		<header class="box row">
-			<h1>felt<small><a href="https://github.com/feltjs">💚</a></small>template</h1>
+<main>
+	<section class="prose box">
+		<header class="box text_align_center">
+			<h1>web interaction study</h1>
+			<blockquote class="width_sm">
+				a small tool for understanding web interactions as implemented in the wild
+			</blockquote>
 		</header>
-		<Message
-			><span slot="icon"
-				>{#if mreows}{mreows[0].icon}{:else}✨{/if}</span
-			><span
-				>hello, welcome to <a href="https://github.com/feltjs/felt-template">felt-template</a></span
-			></Message
-		>
 	</section>
-	<Mreows bind:mreows />
+	<section>
+		<ul>
+			<li>
+				<a class="study" href="{base}/pointing-events">pointing events</a>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<p>
+			<a href="https://github.com/ryanatkn/web-interaction-study">source on GitHub</a>
+		</p>
+	</section>
 </main>
 
 <style>
@@ -29,7 +34,13 @@
 		align-items: center;
 		margin: 0 auto;
 	}
-	h1 {
-		text-align: center;
+	section {
+		margin-bottom: var(--spacing_xl6);
+	}
+	.study {
+		padding: var(--spacing_xl);
+		background: var(--fg_1);
+		border-radius: var(--border_radius);
+		font-size: var(--size_xl);
 	}
 </style>

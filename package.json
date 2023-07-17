@@ -1,7 +1,7 @@
 {
-  "name": "felt-template",
+  "name": "web-interaction-study",
   "private": true,
-  "description": "a static web app and Node library template with SvelteKit, Gro, and Felt",
+  "description": "a small tool for understanding web interactions as implemented in the wild",
   "version": "0.0.1",
   "type": "module",
   "homepage": "https://template.felt.dev/",
