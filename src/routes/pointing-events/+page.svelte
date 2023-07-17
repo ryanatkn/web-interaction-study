@@ -19,6 +19,11 @@
 		items.unshift({type, name, time: performance.now()});
 	};
 
+	let enable_move_events = false;
+	let enable_mouse_events = true;
+	let enable_touch_events = true;
+	let enable_pointer_events = true;
+
 	let mouse_is_down = false;
 	let touch_is_down = false;
 	let pointer_is_down = false;
@@ -55,11 +60,6 @@
 			}
 			log('touch', name);
 		};
-
-	let enable_move_events = false;
-	let enable_mouse_events = true;
-	let enable_touch_events = true;
-	let enable_pointer_events = true;
 
 	const format_log_text = (text: string): string => {
 		const parts = text.split(/\s/gu);
