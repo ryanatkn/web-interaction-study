@@ -107,7 +107,7 @@
 </script>
 
 <div class="wrapper">
-	<div class="scrollable">
+	<div class="sidebar">
 		<button on:click={clear}>clear log</button>
 		<button on:click={copy}>copy log</button>
 		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
@@ -184,6 +184,7 @@
 		position: fixed;
 		inset: 0;
 		display: flex;
+		overflow: auto;
 	}
 	.content {
 		position: relative;
@@ -197,10 +198,12 @@
 		user-select: none;
 		touch-action: none;
 	}
-	.scrollable {
+	.sidebar {
 		width: 120px;
 		height: 100%;
 		background-color: var(--fg_1);
+		position: sticky;
+		top: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
