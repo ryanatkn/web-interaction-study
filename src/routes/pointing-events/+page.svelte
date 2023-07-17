@@ -21,7 +21,6 @@
 	const mouse =
 		(name: string) =>
 		(_e: MouseEvent): void => {
-			console.log(`enable_move_events`, enable_move_events);
 			if (enable_move_events) {
 				if (name === 'mousemove' && !mouse_is_down) return;
 				if (name === 'mousedown') mouse_is_down = true;
@@ -32,7 +31,6 @@
 	const pointer =
 		(name: string) =>
 		(_e: PointerEvent): void => {
-			console.log(`enable_move_events`, enable_move_events);
 			if (enable_move_events) {
 				if (name === 'pointermove' && !pointer_is_down) return;
 				if (name === 'pointerdown') pointer_is_down = true;
@@ -43,7 +41,6 @@
 	const touch =
 		(name: string) =>
 		(_e: TouchEvent): void => {
-			console.log(`enable_move_events`, enable_move_events);
 			if (enable_move_events) {
 				if (name === 'touchmove' && !touch_is_down) return;
 				if (name === 'touchdown') touch_is_down = true;
@@ -60,6 +57,37 @@
 	let enable_touch_events = true;
 	let enable_pointer_events = true;
 
+	const format_log_text = (text: string): string => {
+		const parts = text.split(/\s/gu);
+		let formatted = '';
+		for (let i = 0; i < parts.length; i++) {
+			const part = parts[i];
+			switch (i % 3) {
+				case 0: {
+					formatted += part;
+					break;
+				}
+				case 1: {
+					formatted += ' ' + part;
+					break;
+				}
+				case 2: {
+					formatted += ' ' + part + '\n';
+					break;
+				}
+			}
+		}
+		return formatted;
+	};
+
+	let log_el: HTMLElement;
+	const copy = async () => {
+		try {
+			await navigator.clipboard.writeText(format_log_text(log_el.innerText));
+		} catch (err) {
+			alert('failed to copy'); // eslint-disable-line no-alert
+		}
+	};
 	const clear = () => {
 		items = [];
 	};
@@ -70,13 +98,11 @@
 		enable_touch_events = true;
 		enable_pointer_events = true;
 	};
-
-	$: console.log(`enable_move_events`, enable_move_events);
 </script>
 
 <div class="wrapper">
 	<div class="content">
-		<ul class="log">
+		<ul class="log" bind:this={log_el}>
 			{#each items as item, i (item)}
 				{@const time = item.time - start_time}
 				{@const dt = i === item_count - 1 ? time : time - (items[i + 1].time - start_time)}
@@ -131,6 +157,7 @@
 		<label><input type="checkbox" bind:checked={enable_mouse_events} />mouse events</label>
 		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
 		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
+		<button on:click={copy}>copy</button>
 		<button on:click={reset}>reset</button>
 	</div>
 </div>
