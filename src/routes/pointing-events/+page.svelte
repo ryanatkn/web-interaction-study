@@ -1,5 +1,5 @@
 <script lang="ts">
-	// TODO maybe expand behavior to demonstrate `capture`
+	// TODO maybe expand behavior to demonstrate `capture` and handlers that are passive by default
 
 	interface LogItem {
 		type: 'mouse' | 'touch' | 'pointer';
