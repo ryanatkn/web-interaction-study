@@ -7,3 +7,5 @@ deployed:
 
 docs for running the code yourself:
 [felt-template](https://github.com/feltjs/felt-template)
+
+public domain ⚘ [The Unlicense](license)
