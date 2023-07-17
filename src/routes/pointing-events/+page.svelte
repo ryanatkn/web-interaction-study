@@ -117,34 +117,35 @@
 				</li>
 			{/each}
 		</ul>
+		<!-- the `nonpassive` is needed for some events on some browsers, so we'll include it everywhere -->
 		<div
 			class="pointing_events"
 			role="none"
-			on:click={enable_mouse_events ? mouse('click') : undefined}
-			on:dblclick={enable_mouse_events ? mouse('dblclick') : undefined}
-			on:mousedown={enable_mouse_events ? mouse('mousedown') : undefined}
-			on:mouseup={enable_mouse_events ? mouse('mouseup') : undefined}
-			on:mouseenter={enable_mouse_events ? mouse('mouseenter') : undefined}
-			on:mouseleave={enable_mouse_events ? mouse('mouseleave') : undefined}
-			on:mousemove={enable_mouse_events
+			on:click|nonpassive={enable_mouse_events ? mouse('click') : undefined}
+			on:dblclick|nonpassive={enable_mouse_events ? mouse('dblclick') : undefined}
+			on:mousedown|nonpassive={enable_mouse_events ? mouse('mousedown') : undefined}
+			on:mouseup|nonpassive={enable_mouse_events ? mouse('mouseup') : undefined}
+			on:mouseenter|nonpassive={enable_mouse_events ? mouse('mouseenter') : undefined}
+			on:mouseleave|nonpassive={enable_mouse_events ? mouse('mouseleave') : undefined}
+			on:mousemove|nonpassive={enable_mouse_events
 				? enable_move_events
 					? mouse('mousemove')
 					: undefined
 				: undefined}
-			on:pointerdown={enable_pointer_events ? pointer('pointerdown') : undefined}
-			on:pointerup={enable_pointer_events ? pointer('pointerup') : undefined}
-			on:pointercancel={enable_pointer_events ? pointer('pointercancel') : undefined}
-			on:pointerenter={enable_pointer_events ? pointer('pointerenter') : undefined}
-			on:pointerleave={enable_pointer_events ? pointer('pointerleave') : undefined}
-			on:pointermove={enable_pointer_events
+			on:pointerdown|nonpassive={enable_pointer_events ? pointer('pointerdown') : undefined}
+			on:pointerup|nonpassive={enable_pointer_events ? pointer('pointerup') : undefined}
+			on:pointercancel|nonpassive={enable_pointer_events ? pointer('pointercancel') : undefined}
+			on:pointerenter|nonpassive={enable_pointer_events ? pointer('pointerenter') : undefined}
+			on:pointerleave|nonpassive={enable_pointer_events ? pointer('pointerleave') : undefined}
+			on:pointermove|nonpassive={enable_pointer_events
 				? enable_move_events
 					? pointer('pointermove')
 					: undefined
 				: undefined}
-			on:touchstart={enable_touch_events ? touch('touchstart') : undefined}
-			on:touchend={enable_touch_events ? touch('touchend') : undefined}
-			on:touchcancel={enable_touch_events ? touch('touchcancel') : undefined}
-			on:touchmove={enable_touch_events
+			on:touchstart|nonpassive={enable_touch_events ? touch('touchstart') : undefined}
+			on:touchend|nonpassive={enable_touch_events ? touch('touchend') : undefined}
+			on:touchcancel|nonpassive={enable_touch_events ? touch('touchcancel') : undefined}
+			on:touchmove|nonpassive={enable_touch_events
 				? enable_move_events
 					? touch('touchmove')
 					: undefined
