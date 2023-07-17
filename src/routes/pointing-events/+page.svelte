@@ -115,7 +115,7 @@
 		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
 		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
 		<button on:click={reset}>reset</button>
-		<footer class="panel">
+		<footer>
 			<a
 				href="https://github.com/ryanatkn/web-interaction-study/blob/main/src/routes/pointing-events/%2Bpage.svelte"
 				>source</a
@@ -241,12 +241,18 @@
 		width: 70px;
 	}
 	footer {
-		margin-top: var(--spacing_lg);
+		padding: var(--spacing_xs);
 	}
 	footer a {
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		padding: var(--spacing_xs);
+		background-color: var(--fg_1);
+		border-radius: var(--border_radius_sm);
+		margin-bottom: var(--spacing_xs);
+	}
+	button {
+		margin: var(--spacing_xs);
 	}
 </style>
