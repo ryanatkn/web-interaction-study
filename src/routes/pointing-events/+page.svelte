@@ -18,7 +18,6 @@
 		items.unshift({type: 'mouse', name, time: performance.now()});
 	};
 
-	// TODO BLOCK add mousemove, but only between a mousedown and mouseup to avoid worthless spam
 	const mouse =
 		(name: string) =>
 		(_e: MouseEvent): void => {
@@ -128,11 +127,11 @@
 	</div>
 	<div class="scrollable">
 		<button on:click={clear}>clear log</button>
-		<button on:click={reset}>reset all</button>
 		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
 		<label><input type="checkbox" bind:checked={enable_mouse_events} />mouse events</label>
 		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
 		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
+		<button on:click={reset}>reset</button>
 	</div>
 </div>
 
@@ -162,9 +161,8 @@
 		flex-direction: column;
 		align-items: stretch;
 	}
-	/* hacky */
-	.scrollable > :global(label) {
-		margin-top: var(--spacing_xl);
+	label {
+		padding: var(--spacing_md) 0;
 	}
 	.log {
 		position: absolute;
