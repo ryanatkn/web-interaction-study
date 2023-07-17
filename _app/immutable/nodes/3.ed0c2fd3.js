@@ -1,1 +1,0 @@
-import{n as s,p as i,q as r,i as p,D as a,f as c}from"../chunks/boolean_attributes.f4b6518c.js";import{S as m,i as l}from"../chunks/index.a0e82e4f.js";function f(n){let t;return{c(){t=i("wip")},l(e){t=r(e,"wip")},m(e,o){p(e,t,o)},p:a,i:a,o:a,d(e){e&&c(t)}}}class d extends m{constructor(t){super(),l(this,t,null,f,s,{})}}export{d as component};
