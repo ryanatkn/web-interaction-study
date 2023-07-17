@@ -14,9 +14,9 @@
 	$: item_count = items.length;
 	$: start_time = items[item_count - 1]?.time;
 
-	const log = (name: string) => {
+	const log = (type: LogItem['type'], name: string) => {
 		items = items.slice();
-		items.unshift({type: 'mouse', name, time: performance.now()});
+		items.unshift({type, name, time: performance.now()});
 	};
 
 	let mouse_is_down = false;
@@ -31,7 +31,7 @@
 				if (name === 'mousedown') mouse_is_down = true;
 				if (name === 'mouseup') mouse_is_down = false;
 			}
-			log(name);
+			log('mouse', name);
 		};
 
 	const pointer =
@@ -42,7 +42,7 @@
 				if (name === 'pointerdown') pointer_is_down = true;
 				if (name === 'pointerup' || name === 'pointercancel') pointer_is_down = false;
 			}
-			log(name);
+			log('pointer', name);
 		};
 
 	const touch =
@@ -53,7 +53,7 @@
 				if (name === 'touchstart') touch_is_down = true;
 				if (name === 'touchend' || name === 'touchcancel') touch_is_down = false;
 			}
-			log(name);
+			log('touch', name);
 		};
 
 	let enable_move_events = false;
@@ -225,7 +225,7 @@
 		color: var(--color_2);
 	}
 	li.pointer {
-		color: var(--color_3);
+		color: var(--color_6);
 	}
 	.name {
 		width: 105px;
