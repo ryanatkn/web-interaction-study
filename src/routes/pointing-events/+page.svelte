@@ -9,6 +9,8 @@
 
 	let items: LogItem[] = [];
 
+	let mouse_is_down = false;
+
 	const log = (name: string) => {
 		items = items.slice();
 		items.unshift({type: 'mouse', name, time: performance.now()});
@@ -18,12 +20,30 @@
 	const mouse =
 		(name: string) =>
 		(e: MouseEvent): void => {
+			console.log(`enable_move_events`, enable_move_events);
+			if (enable_move_events) {
+				if (name === 'mousemove' && !mouse_is_down) return;
+				if (name === 'mousedown') mouse_is_down = true;
+				if (name === 'mouseup') mouse_is_down = false;
+			}
 			log(name);
 			console.log(`e`, e);
 		};
 
 	$: item_count = items.length;
 	$: start_time = items[item_count - 1]?.time;
+
+	let enable_move_events = false;
+
+	const clear = () => {
+		items = [];
+	};
+	const reset = () => {
+		clear();
+		enable_move_events = false;
+	};
+
+	$: console.log(`enable_move_events`, enable_move_events);
 </script>
 
 <div class="wrapper">
@@ -50,10 +70,13 @@
 			on:dblclick={mouse('dblclick')}
 			on:mousedown={mouse('mousedown')}
 			on:mouseup={mouse('mouseup')}
+			on:mousemove={enable_move_events ? mouse('mousemove') : undefined}
 		/>
 	</div>
 	<div class="scrollable">
-		<button on:click={() => (items = [])}>clear</button>
+		<button on:click={clear}>clear log</button>
+		<button on:click={reset}>reset all</button>
+		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
 	</div>
 </div>
 
@@ -71,14 +94,21 @@
 	.pointing_events {
 		position: absolute;
 		inset: 0;
+		-webkit-user-select: none;
+		user-select: none;
+		touch-action: none;
 	}
 	.scrollable {
-		width: 80px;
+		width: 120px;
 		height: 100%;
 		background-color: var(--fg_1);
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
+	}
+	/* hacky */
+	.scrollable > :global(label) {
+		margin-top: var(--spacing_xl);
 	}
 	.log {
 		position: absolute;
