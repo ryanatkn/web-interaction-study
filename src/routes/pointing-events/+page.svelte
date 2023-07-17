@@ -36,7 +36,7 @@
 			if (enable_move_events) {
 				if (name === 'pointermove' && !pointer_is_down) return;
 				if (name === 'pointerdown') pointer_is_down = true;
-				if (name === 'pointerup') pointer_is_down = false;
+				if (name === 'pointerup' || name === 'pointercancel') pointer_is_down = false;
 			}
 			log(name);
 		};
@@ -45,8 +45,8 @@
 		(_e: TouchEvent): void => {
 			if (enable_move_events) {
 				if (name === 'touchmove' && !touch_is_down) return;
-				if (name === 'touchdown') touch_is_down = true;
-				if (name === 'touchup') touch_is_down = false;
+				if (name === 'touchstart') touch_is_down = true;
+				if (name === 'touchend' || name === 'touchcancel') touch_is_down = false;
 			}
 			log(name);
 		};
