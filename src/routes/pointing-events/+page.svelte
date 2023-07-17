@@ -1,5 +1,5 @@
 <script lang="ts">
-	// TODO BLOCK capture (toggle?)
+	// TODO maybe expand behavior to demonstrate `capture`
 
 	interface LogItem {
 		type: 'mouse' | 'touch' | 'pointer';
@@ -119,7 +119,7 @@
 		</ul>
 		<!-- the `nonpassive` changes behavior for some events on some browsers,
 			so we'll include it everywhere, but we probably want to add a toggle
-			to revert some or all of them to the default -->
+			to revert some or all of them to the default to demonstrate the difference -->
 		<div
 			class="pointing_events"
 			role="none"
