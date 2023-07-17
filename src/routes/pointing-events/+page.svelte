@@ -11,14 +11,17 @@
 
 	let items: LogItem[] = [];
 
-	let mouse_is_down = false;
-	let touch_is_down = false;
-	let pointer_is_down = false;
+	$: item_count = items.length;
+	$: start_time = items[item_count - 1]?.time;
 
 	const log = (name: string) => {
 		items = items.slice();
 		items.unshift({type: 'mouse', name, time: performance.now()});
 	};
+
+	let mouse_is_down = false;
+	let touch_is_down = false;
+	let pointer_is_down = false;
 
 	const mouse =
 		(name: string) =>
@@ -30,6 +33,7 @@
 			}
 			log(name);
 		};
+
 	const pointer =
 		(name: string) =>
 		(_e: PointerEvent): void => {
@@ -40,6 +44,7 @@
 			}
 			log(name);
 		};
+
 	const touch =
 		(name: string) =>
 		(_e: TouchEvent): void => {
@@ -50,9 +55,6 @@
 			}
 			log(name);
 		};
-
-	$: item_count = items.length;
-	$: start_time = items[item_count - 1]?.time;
 
 	let enable_move_events = false;
 	let enable_mouse_events = true;
@@ -90,9 +92,11 @@
 			alert('failed to copy'); // eslint-disable-line no-alert
 		}
 	};
+
 	const clear = () => {
 		items = [];
 	};
+
 	const reset = () => {
 		clear();
 		enable_move_events = false;
