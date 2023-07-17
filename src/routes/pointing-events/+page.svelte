@@ -4,7 +4,7 @@
 	// TODO maybe expand behavior to demonstrate `capture` and handlers that are passive by default
 
 	interface LogItem {
-		type: 'mouse' | 'touch' | 'pointer';
+		type: 'mouse' | 'touch' | 'pointer' | 'other';
 		name: string;
 		time: number;
 	}
@@ -107,6 +107,22 @@
 </script>
 
 <div class="wrapper">
+	<div class="scrollable">
+		<button on:click={clear}>clear log</button>
+		<button on:click={copy}>copy log</button>
+		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
+		<label><input type="checkbox" bind:checked={enable_mouse_events} />mouse events</label>
+		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
+		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
+		<button on:click={reset}>reset</button>
+		<footer class="panel">
+			<a
+				href="https://github.com/ryanatkn/web-interaction-study/blob/main/src/routes/pointing-events/%2Bpage.svelte"
+				>source</a
+			>
+			<a href="{base}/">home</a>
+		</footer>
+	</div>
 	<div class="content">
 		<ul class="log" bind:this={log_el}>
 			{#each items as item, i (item)}
@@ -129,6 +145,7 @@
 		<div
 			class="pointing_events"
 			role="none"
+			on:contextmenu|nonpassive={() => log('other', 'contextmenu')}
 			on:click|nonpassive={enable_mouse_events ? mouse('click') : undefined}
 			on:dblclick|nonpassive={enable_mouse_events ? mouse('dblclick') : undefined}
 			on:mousedown|nonpassive={enable_mouse_events ? mouse('mousedown') : undefined}
@@ -159,22 +176,6 @@
 					: undefined
 				: undefined}
 		/>
-	</div>
-	<div class="scrollable">
-		<button on:click={clear}>clear log</button>
-		<button on:click={copy}>copy log</button>
-		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
-		<label><input type="checkbox" bind:checked={enable_mouse_events} />mouse events</label>
-		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
-		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
-		<button on:click={reset}>reset</button>
-		<footer class="panel">
-			<a
-				href="https://github.com/ryanatkn/web-interaction-study/blob/main/src/routes/pointing-events/%2Bpage.svelte"
-				>source</a
-			>
-			<a href="{base}/">home</a>
-		</footer>
 	</div>
 </div>
 
