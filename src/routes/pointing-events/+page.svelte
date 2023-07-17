@@ -1,4 +1,6 @@
 <script lang="ts">
+	import {base} from '$app/paths';
+
 	// TODO maybe expand behavior to demonstrate `capture` and handlers that are passive by default
 
 	interface LogItem {
@@ -156,12 +158,19 @@
 	</div>
 	<div class="scrollable">
 		<button on:click={clear}>clear log</button>
+		<button on:click={copy}>copy log</button>
 		<label><input type="checkbox" bind:checked={enable_move_events} />move events</label>
 		<label><input type="checkbox" bind:checked={enable_mouse_events} />mouse events</label>
 		<label><input type="checkbox" bind:checked={enable_touch_events} />touch events</label>
 		<label><input type="checkbox" bind:checked={enable_pointer_events} />pointer events</label>
-		<button on:click={copy}>copy</button>
 		<button on:click={reset}>reset</button>
+		<footer class="panel">
+			<a
+				href="https://github.com/ryanatkn/web-interaction-study/blob/main/src/routes/pointing-events/%2Bpage.svelte"
+				>source</a
+			>
+			<a href="{base}/">home</a>
+		</footer>
 	</div>
 </div>
 
@@ -225,5 +234,14 @@
 	}
 	.dt {
 		width: 70px;
+	}
+	footer {
+		margin-top: var(--spacing_lg);
+	}
+	footer a {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: var(--spacing_xs);
 	}
 </style>
