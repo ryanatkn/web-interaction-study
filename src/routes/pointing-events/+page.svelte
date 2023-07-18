@@ -194,9 +194,6 @@
 	.pointing_events {
 		position: absolute;
 		inset: 0;
-		-webkit-user-select: none;
-		user-select: none;
-		touch-action: none;
 	}
 	.sidebar {
 		width: 120px;
